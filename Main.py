@@ -44,23 +44,23 @@ l_linha.place(x=0,y=46)
 
 #configurando o formulário
 l_nome = Label(frame_baixo,text='Nome *',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
-l_nome.place(x=10,y=20)
+l_nome.place(x=10,y=15)
 en_nome = Entry(frame_baixo,width=25,justify='left',font=('',10),highlightthickness=1)
 en_nome.place(x=80,y=20)
 
 
-l_sexo = Label(frame_baixo,text='Sexo *',anchor=NW,font=('ivy 10'),bg=co1,fg=co4)
+l_sexo = Label(frame_baixo,text='Sexo *',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
 l_sexo.place(x=10,y=50)
 c_sexo = Combobox(frame_baixo,width=27)
 c_sexo['value'] = ('','F','M','gambiarra do kpta')
 c_sexo.place(x=80,y=50)
 
-l_Telefone = Label(frame_baixo,text='Telefone*',anchor=NW,font=('ivy 10'),bg=co1,fg=co4)
-l_Telefone.place(x=10,y=80)
+l_Telefone = Label(frame_baixo,text='Telefone*',anchor=NW,font=('ivy 12 bold'),bg=co1,fg=co4)
+l_Telefone.place(x=5,y=80)
 en_Telefone = Entry(frame_baixo,width=25,justify='left',font=('',10),highlightthickness=1)
 en_Telefone.place(x=80,y=80)
 
-l_Email = Label(frame_baixo,text='E-mail*',anchor=NW,font=('ivy 10'),bg=co1,fg=co4)
+l_Email = Label(frame_baixo,text='E-mail*',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
 l_Email.place(x=10,y=110)
 en_Email = Entry(frame_baixo,width=25,justify='left',relief="sunken",font=('',10),highlightthickness=1)
 en_Email.place(x=80,y=110)
@@ -68,6 +68,7 @@ en_Email.place(x=80,y=110)
 b_procurar = Button(frame_baixo,text='procurar',font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
 b_procurar.place(x=290,y=20)
 en_procurar = Entry(frame_baixo,width=16,justify='left',font=('',11),highlightthickness=1)
+en_procurar.place(x=350,y=20)
 
 b_Olhar = Button(frame_baixo,text='Ver dados',width=10,font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
 b_Olhar.place(x=290,y=50)
@@ -83,7 +84,7 @@ b_Deletar.place(x=400,y=110)
 
 #configurando frame tabela
 Cab_lista = ['Nome','Sexo','Telefone','e-mail']
-dados = [['joao','M','123456','joaomigga@'],
+dados = [['joao','Gambiarra do kpta','123456','joaomigga'],
          ['julia','F','123456','giganibba']]
 
 tree = ttk.Treeview(frame_tabela,selectmode="extended",columns=Cab_lista,show="headings")
@@ -101,6 +102,20 @@ hbr.grid(column=0,row=1,sticky='ew')
 hd = ["nw","nw","nw","nw","nw"]
 h=[120,50,80,120,200]
 n=0
+
+tree.heading(0,text='Nome',anchor=NW)
+tree.heading(1,text='Sexo',anchor=NW)
+tree.heading(2,text='Telefone',anchor=NW)
+tree.heading(3,text='Email',anchor=NW)
+
+tree.column(0,width=120,anchor='nw')
+tree.column(1,width=50,anchor='nw')
+tree.column(2,width=100,anchor='nw')
+tree.column(0,width=120,anchor=hd[0])
+
+for item in dados:
+     tree.insert('','end',values=item)
+     
 
 
 janela.mainloop()
