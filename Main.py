@@ -84,7 +84,7 @@ b_Deletar.place(x=400,y=110)
 
 #configurando frame tabela
 Cab_lista = ['Nome','Sexo','Telefone','e-mail']
-dados = [['joao','Gambiarra do kpta','123456','joaomigga'],
+dados = [['joao','Gambiarra do kpta','123456','joaonigga'],
          ['julia','F','123456','giganibba']]
 
 tree = ttk.Treeview(frame_tabela,selectmode="extended",columns=Cab_lista,show="headings")
