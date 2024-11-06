@@ -26,15 +26,15 @@ style.theme_use("clam")
 frame_cima = Frame(janela,width=500,height=50,bg=co3,relief="flat")
 frame_cima.grid(row=0,column=0,pady=1,padx=0,sticky=NSEW)
 
-frame_baixo = Frame(janela,width=500,height=150,bg=co1,relief="flat")
+frame_baixo = Frame(janela,width=500,height=190,bg=co1,relief="flat")
 frame_baixo.grid(row=1,column=0,pady=1,padx=0,sticky=NSEW)
 
 frame_tabela = Frame(janela,width=500,height=248,bg=co2,relief="flat")
-frame_tabela.grid(row=2,column=0,columnspan=2,padx=10,pady=1,sticky=NW)
+frame_tabela.grid(row=2,column=0,columnspan=2,padx=10,pady=30,sticky=NW)
 
 #configurando a parte de cima
 
-l_nome = Label(frame_cima,text='Agenda Telefônica',font=('arial 20 bold'),bg=co3,fg=co1)
+l_nome = Label(frame_cima,text='Registro de Clientes',font=('arial 20 bold'),bg=co3,fg=co1)
 l_nome.pack(fill=BOTH,expand=TRUE)
 l_nome.place(x=5,y=5)
 
@@ -46,46 +46,51 @@ l_linha.place(x=0,y=46)
 l_nome = Label(frame_baixo,text='Nome *',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
 l_nome.place(x=10,y=15)
 en_nome = Entry(frame_baixo,width=25,justify='left',font=('',10),highlightthickness=1)
-en_nome.place(x=80,y=20)
+en_nome.place(x=110,y=20)
 
 
 l_sexo = Label(frame_baixo,text='Sexo *',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
 l_sexo.place(x=10,y=50)
 c_sexo = Combobox(frame_baixo,width=27)
-c_sexo['value'] = ('','F','M','gambiarra do kpta')
-c_sexo.place(x=80,y=50)
+c_sexo['value'] = ('','F','M','Outro')
+c_sexo.place(x=110,y=50)
 
-l_Telefone = Label(frame_baixo,text='Telefone*',anchor=NW,font=('ivy 12 bold'),bg=co1,fg=co4)
+l_Telefone = Label(frame_baixo,text='Telefone*',anchor=NW,font=('ivy 15 '),bg=co1,fg=co4)
 l_Telefone.place(x=5,y=80)
 en_Telefone = Entry(frame_baixo,width=25,justify='left',font=('',10),highlightthickness=1)
-en_Telefone.place(x=80,y=80)
+en_Telefone.place(x=110,y=80)
 
 l_Email = Label(frame_baixo,text='E-mail*',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
 l_Email.place(x=10,y=110)
 en_Email = Entry(frame_baixo,width=25,justify='left',relief="sunken",font=('',10),highlightthickness=1)
-en_Email.place(x=80,y=110)
+en_Email.place(x=110,y=110)
+
+l_Endereco = Label(frame_baixo,text='Endereço*',anchor=NW,font=('ivy 15'),bg=co1,fg=co4)
+l_Endereco.place(x=10,y=140)
+en_Endereco = Entry(frame_baixo,width=25,justify='left',relief="sunken",font=('',10),highlightthickness=1)
+en_Endereco.place(x=110,y=145)
 
 b_procurar = Button(frame_baixo,text='procurar',font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
-b_procurar.place(x=290,y=20)
+b_procurar.place(x=300,y=20)
 en_procurar = Entry(frame_baixo,width=16,justify='left',font=('',11),highlightthickness=1)
-en_procurar.place(x=350,y=20)
+en_procurar.place(x=360,y=20)
 
 b_Olhar = Button(frame_baixo,text='Ver dados',width=10,font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
-b_Olhar.place(x=290,y=50)
+b_Olhar.place(x=300,y=50)
 
 b_Adicionar = Button(frame_baixo,text='Adicionar',width=10,font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
-b_Adicionar.place(x=400,y=50)
+b_Adicionar.place(x=410,y=50)
 
 b_Atualizar = Button(frame_baixo,text='Atualizar',width=10,font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
-b_Atualizar.place(x=400,y=80)
+b_Atualizar.place(x=410,y=80)
 
 b_Deletar = Button(frame_baixo,text='Deletar',width=10,font=('ivy 8 bold'),bg=co1,fg=co4,relief=RAISED,overrelief=RIDGE)
-b_Deletar.place(x=400,y=110)
+b_Deletar.place(x=410,y=110)
 
 #configurando frame tabela
-Cab_lista = ['Nome','Sexo','Telefone','e-mail']
-dados = [['joao','Gambiarra do kpta','123456','joaomibba'],
-         ['julia','F','123456','gigamibba']]
+Cab_lista = ['Nome','Sexo','Telefone','e-mail','Endereço']
+dados = [['joao','Gambiarra do kpta','123456','joaomibba','Rua pindamonhangaba'],
+         ['julia','F','123456','gigamibba', 'Rua Amazonas']]
 
 tree = ttk.Treeview(frame_tabela,selectmode="extended",columns=Cab_lista,show="headings")
 
@@ -107,11 +112,13 @@ tree.heading(0,text='Nome',anchor=NW)
 tree.heading(1,text='Sexo',anchor=NW)
 tree.heading(2,text='Telefone',anchor=NW)
 tree.heading(3,text='Email',anchor=NW)
+tree.heading(4,text='Endereço',anchor=NW)
 
 tree.column(0,width=120,anchor='nw')
 tree.column(1,width=50,anchor='nw')
 tree.column(2,width=100,anchor='nw')
 tree.column(0,width=120,anchor=hd[0])
+
 
 for item in dados:
      tree.insert('','end',values=item)
